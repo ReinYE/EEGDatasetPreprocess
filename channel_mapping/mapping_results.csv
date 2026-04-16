@@ -1,0 +1,9 @@
+Target,MatchedChannel,Distance,Meaning
+AF3,E1,0.161644607442366,good match
+AF4,E2,0.161644607442366,good match
+F3,E3,0.0655130626606615,very close match
+F4,E4,0.0647249209800921,very close match
+FC5,E11,0.393120032839032,possible match
+FC6,E12,0.393120032839032,possible match
+F7,E31,0.433654457131553,possible match
+F8,E32,0.433696151026176,possible match
