@@ -1,0 +1,184 @@
+-- all channels
+
+ANOVA
+Total features: 65
+FDR-significant features: 55
+Final selected features (q < 0.05 & eta2 >= 0.01): 47
+
+Top 20 features:
+      feature           F             p     eta2             q  significant_fdr
+ POW.F4.Alpha 2848.499371  0.000000e+00 0.458585  0.000000e+00             True
+ POW.F3.Alpha 2524.456601  0.000000e+00 0.428786  0.000000e+00             True
+POW.AF3.Alpha 2409.267771  0.000000e+00 0.417387  0.000000e+00             True
+ POW.F8.Alpha 2377.845757  0.000000e+00 0.414198  0.000000e+00             True
+POW.AF4.Alpha 2292.179071  0.000000e+00 0.405324  0.000000e+00             True
+POW.FC6.Alpha 2140.114266  0.000000e+00 0.388891  0.000000e+00             True
+POW.FC5.Alpha 1830.866240 9.083397e-320 0.352505 8.434590e-319             True
+ POW.F7.Alpha 1756.467877 3.164307e-309 0.343096 2.570999e-308             True
+ POW.T7.Alpha 1619.940674 1.783467e-289 0.325097 1.288060e-288             True
+ POW.O2.Alpha  903.143098 5.779300e-176 0.211700 3.756545e-175             True
+POW.FC6.Theta  823.851288 3.008672e-162 0.196771 1.777852e-161             True
+ POW.T8.Alpha  797.279422 1.359878e-157 0.191641 7.366008e-157             True
+ POW.F8.Theta  731.576199 5.940089e-146 0.178670 2.970044e-145             True
+ POW.T7.Theta  713.377447 1.074623e-142 0.175003 4.989319e-142             True
+ POW.F8.BetaH  699.471103 3.390781e-140 0.172179 1.469339e-139             True
+ POW.F4.Theta  689.074921 2.536234e-138 0.170055 1.030345e-137             True
+ POW.F3.BetaH  632.457432 4.957613e-128 0.158294 1.895558e-127             True
+ POW.F8.BetaL  517.799009 9.894697e-107 0.133426 3.573085e-106             True
+ POW.F4.BetaL  498.390453 4.612428e-103 0.129070 1.577936e-102             True
+POW.FC6.BetaH  491.121934 1.103102e-101 0.127428 3.585081e-101             True
+
+train model
+Data shape: (3365, 66)
+   POW.AF3.Theta  POW.AF3.Alpha  POW.AF3.BetaL  POW.AF3.BetaH  POW.AF3.Gamma  \
+0       4.456561       3.495647       0.839779       0.325413       0.365118
+1       4.559149       2.995620       0.647689       0.346526       0.353810
+2       4.543970       2.642398       0.543687       0.388384       0.341476
+3       4.526125       2.499658       0.570819       0.450692       0.334778
+4       4.524489       2.525326       0.731554       0.528926       0.334570
+
+   POW.F7.Theta  POW.F7.Alpha  POW.F7.BetaL  POW.F7.BetaH  POW.F7.Gamma  ...  \
+0      3.269726      1.190943      1.039884      0.253717      0.246723  ...
+1      3.316445      1.317984      0.916580      0.253443      0.233739  ...
+2      3.418697      1.674606      0.825198      0.278880      0.236419  ...
+3      3.412848      2.231747      0.802202      0.325729      0.259437  ...
+4      3.224709      2.861127      0.851462      0.385452      0.300356  ...
+
+   POW.O1.Alpha  POW.O1.BetaL  POW.O1.BetaH  POW.O1.Gamma  POW.O2.Theta  \
+0      0.669501      0.306024      0.137857      0.083761      0.566802
+1      0.485862      0.262921      0.128714      0.085904      0.484825
+2      0.445628      0.242510      0.121717      0.087062      0.439909
+3      0.525369      0.239202      0.120406      0.086772      0.436871
+4      0.660228      0.243027      0.128079      0.084985      0.477220
+
+   POW.O2.Alpha  POW.O2.BetaL  POW.O2.BetaH  POW.O2.Gamma        label
+0      0.731827      0.585487      0.273124      0.114092  concentrate
+1      0.627459      0.437517      0.244615      0.117297  concentrate
+2      0.581006      0.343506      0.224738      0.116400  concentrate
+3      0.570199      0.307706      0.217067      0.110566  concentrate
+4      0.573813      0.321397      0.223207      0.101165  concentrate
+
+[5 rows x 66 columns]
+
+Label distribution:
+label
+concentrate    2403
+relax           962
+Name: count, dtype: int64
+
+Accuracy: 0.9791976225854383
+
+Classification Report:
+              precision    recall  f1-score   support
+
+ concentrate       0.98      0.99      0.99       481
+       relax       0.98      0.95      0.96       192
+
+    accuracy                           0.98       673
+   macro avg       0.98      0.97      0.97       673
+weighted avg       0.98      0.98      0.98       673
+
+evaluation
+Test file: D:/MyProjects/EEGDatasets/EPOCX/EPOCX_extracted/p1/all_channels\gaming_frontal.csv
+Accuracy: 0.9841930116472546
+Classification Report:
+              precision    recall  f1-score   support
+
+ concentrate       1.00      0.98      0.99      2404
+       relax       0.00      0.00      0.00         0
+
+    accuracy                           0.98      2404
+   macro avg       0.50      0.49      0.50      2404
+weighted avg       1.00      0.98      0.99      2404
+
+Confusion Matrix:
+[[2366   38]
+ [   0    0]]
+
+Test file: D:/MyProjects/EEGDatasets/EPOCX/EPOCX_extracted/p1/all_channels\resting1_frontal.csv
+Accuracy: 0.0975103734439834
+Classification Report:
+              precision    recall  f1-score   support
+
+ concentrate       0.00      0.00      0.00         0
+       relax       1.00      0.10      0.18       482
+
+    accuracy                           0.10       482
+   macro avg       0.50      0.05      0.09       482
+weighted avg       1.00      0.10      0.18       482
+
+Confusion Matrix:
+[[  0   0]
+ [435  47]]
+
+Test file: D:/MyProjects/EEGDatasets/EPOCX/EPOCX_extracted/p1/all_channels\resting2_frontal.csv
+Accuracy: 0.3762993762993763
+Classification Report:
+              precision    recall  f1-score   support
+
+ concentrate       0.00      0.00      0.00         0
+       relax       1.00      0.38      0.55       481
+
+    accuracy                           0.38       481
+   macro avg       0.50      0.19      0.27       481
+weighted avg       1.00      0.38      0.55       481
+
+Confusion Matrix:
+[[  0   0]
+ [300 181]]
+
+
+--frontal channels
+
+evaluation
+
+Test file: D:/MyProjects/EEGDatasets/EPOCX/EPOCX_extracted/p1\gaming_frontal.csv
+Accuracy: 0.8960066555740432
+Classification Report:
+              precision    recall  f1-score   support
+
+ concentrate       1.00      0.90      0.95      2404
+       relax       0.00      0.00      0.00         0
+
+    accuracy                           0.90      2404
+   macro avg       0.50      0.45      0.47      2404
+weighted avg       1.00      0.90      0.95      2404
+
+Confusion Matrix:
+[[2154  250]
+ [   0    0]]
+
+Test file: D:/MyProjects/EEGDatasets/EPOCX/EPOCX_extracted/p1\resting1_frontal.csv
+Accuracy: 0.5705394190871369
+
+Classification Report:
+              precision    recall  f1-score   support
+
+ concentrate       0.00      0.00      0.00         0
+       relax       1.00      0.57      0.73       482
+
+    accuracy                           0.57       482
+   macro avg       0.50      0.29      0.36       482
+weighted avg       1.00      0.57      0.73       482
+
+
+Confusion Matrix:
+[[  0   0]
+ [207 275]]
+
+Test file: D:/MyProjects/EEGDatasets/EPOCX/EPOCX_extracted/p1\resting2_frontal.csv
+Accuracy: 0.3180873180873181
+
+Classification Report:
+              precision    recall  f1-score   support
+
+ concentrate       0.00      0.00      0.00         0
+       relax       1.00      0.32      0.48       481
+
+    accuracy                           0.32       481
+   macro avg       0.50      0.16      0.24       481
+weighted avg       1.00      0.32      0.48       481
+
+Confusion Matrix:
+[[  0   0]
+ [328 153]]
