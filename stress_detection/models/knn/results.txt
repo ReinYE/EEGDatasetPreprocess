@@ -1,0 +1,428 @@
+Selected channel numbers: [3, 4, 5, 8, 27, 30, 31, 32]
+Selected SAM40 channel names: ['Fp1', 'F7', 'F3', 'FC5', 'FC6', 'F4', 'F8', 'Fp2']
+Mapped EPOC X channel names: ['AF3', 'F7', 'F3', 'FC5', 'FC6', 'F4', 'F8', 'AF4']
+Selected Python indices: [2, 3, 4, 7, 26, 29, 30, 31]
+Expected dataset shape: (120, 8, 3200)
+First loaded file: Arithmetic_sub_10_trial1.mat
+Original data shape: (32, 3200)
+Original channel count: 32
+Original sample count: 3200
+Selected data shape: (8, 3200)
+Selected channels:
+  original number 3, Python index 2, SAM40 name Fp1, EPOC X name AF3
+  original number 4, Python index 3, SAM40 name F7, EPOC X name F7
+  original number 5, Python index 4, SAM40 name F3, EPOC X name F3
+  original number 8, Python index 7, SAM40 name FC5, EPOC X name FC5
+  original number 27, Python index 26, SAM40 name FC6, EPOC X name FC6
+  original number 30, Python index 29, SAM40 name F4, EPOC X name F4
+  original number 31, Python index 30, SAM40 name F8, EPOC X name F8
+  original number 32, Python index 31, SAM40 name Fp2, EPOC X name AF4
+Loaded trials: 120
+Final dataset shape: (120, 8, 3200)
+
+stress         1525
+mild_stress     975
+high_stress     500
+Name: count, dtype: int64
+['stress' 'mild_stress' 'high_stress']
+
+              precision    recall  f1-score   support
+
+           0       0.73      0.83      0.78       195
+           1       0.85      0.83      0.84       316
+           2       0.83      0.67      0.75        89
+
+    accuracy                           0.81       600
+   macro avg       0.81      0.78      0.79       600
+weighted avg       0.81      0.81      0.81       600
+
+[[162  31   2]
+ [ 44 262  10]
+ [ 15  14  60]]
+
+
+
+
+
+
+
+Selected channel numbers: [3, 4, 5, 8, 16, 19, 27, 30, 31, 32]
+Selected SAM40 channel names: ['Fp1', 'F7', 'F3', 'FC5', 'O1', 'O2', 'FC6', 'F4', 'F8', 'Fp2']
+Mapped EPOC X channel names: ['AF3', 'F7', 'F3', 'FC5', 'O1', 'O2', 'FC6', 'F4', 'F8', 'AF4']
+Selected Python indices: [2, 3, 4, 7, 15, 18, 26, 29, 30, 31]
+Expected dataset shape: (120, 10, 3200)
+First loaded file: Arithmetic_sub_10_trial1.mat
+Original data shape: (32, 3200)
+Original channel count: 32
+Original sample count: 3200
+Selected data shape: (10, 3200)
+Selected channels:
+  original number 3, Python index 2, SAM40 name Fp1, EPOC X name AF3
+  original number 4, Python index 3, SAM40 name F7, EPOC X name F7
+  original number 5, Python index 4, SAM40 name F3, EPOC X name F3
+  original number 8, Python index 7, SAM40 name FC5, EPOC X name FC5
+  original number 16, Python index 15, SAM40 name O1, EPOC X name O1
+  original number 19, Python index 18, SAM40 name O2, EPOC X name O2
+  original number 27, Python index 26, SAM40 name FC6, EPOC X name FC6
+  original number 30, Python index 29, SAM40 name F4, EPOC X name F4
+  original number 31, Python index 30, SAM40 name F8, EPOC X name F8
+  original number 32, Python index 31, SAM40 name Fp2, EPOC X name AF4
+Loaded trials: 120
+Final dataset shape: (120, 10, 3200)
+
+stress         1525
+mild_stress     975
+high_stress     500
+Name: count, dtype: int64
+['stress' 'mild_stress' 'high_stress']
+
+
+feature: hjorth_features    10 * 2 = 20
+              precision    recall  f1-score   support
+
+           0       0.82      0.89      0.85       195
+           1       0.91      0.88      0.90       316
+           2       0.84      0.76      0.80        89
+
+    accuracy                           0.87       600
+   macro avg       0.85      0.84      0.85       600
+weighted avg       0.87      0.87      0.87       600
+
+[[173  19   3]
+ [ 27 279  10]
+ [ 12   9  68]]
+
+
+feature: epocx_band_ratio_hjorth_entropy_features   10 * 16 = 160
+              precision    recall  f1-score   support
+
+           0       0.46      0.43      0.44       195
+           1       0.60      0.76      0.67       316
+           2       0.50      0.08      0.14        89
+
+    accuracy                           0.55       600
+   macro avg       0.52      0.42      0.42       600
+weighted avg       0.54      0.55      0.52       600
+
+[[ 83 109   3]
+ [ 71 241   4]
+ [ 28  54   7]]
+
+
+Selected channel numbers: [3, 4, 5, 8, 10, 16, 19, 25, 27, 30, 31, 32]
+Selected SAM40 channel names: ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'O1', 'O2', 'T8', 'FC6', 'F4', 'F8', 'Fp2']
+Mapped EPOC X channel names: ['AF3', 'F7', 'F3', 'FC5', 'T7', 'O1', 'O2', 'T8', 'FC6', 'F4', 'F8', 'AF4']
+Selected Python indices: [2, 3, 4, 7, 9, 15, 18, 24, 26, 29, 30, 31]
+Expected dataset shape: (120, 12, 3200)
+First loaded file: Arithmetic_sub_10_trial1.mat
+Original data shape: (32, 3200)
+Original channel count: 32
+Original sample count: 3200
+Selected data shape: (12, 3200)
+Selected channels:
+  original number 3, Python index 2, SAM40 name Fp1, EPOC X name AF3
+  original number 4, Python index 3, SAM40 name F7, EPOC X name F7
+  original number 5, Python index 4, SAM40 name F3, EPOC X name F3
+  original number 8, Python index 7, SAM40 name FC5, EPOC X name FC5
+  original number 10, Python index 9, SAM40 name T7O1, EPOC X name T7O1
+  original number 16, Python index 15, SAM40 name O2, EPOC X name O2
+  original number 19, Python index 18, SAM40 name T8, EPOC X name T8
+  original number 25, Python index 24, SAM40 name FC6, EPOC X name FC6
+  original number 27, Python index 26, SAM40 name F4, EPOC X name F4
+  original number 30, Python index 29, SAM40 name F8, EPOC X name F8
+  original number 31, Python index 30, SAM40 name Fp2, EPOC X name AF4
+Loaded trials: 120
+Final dataset shape: (120, 12, 3200)
+
+stress         1525
+mild_stress     975
+high_stress     500
+Name: count, dtype: int64
+['stress' 'mild_stress' 'high_stress']
+
+feature: hjorth_features    12 * 2 = 24
+              precision    recall  f1-score   support
+
+           0       0.90      0.92      0.91       195
+           1       0.93      0.93      0.93       316
+           2       0.90      0.84      0.87        89
+
+    accuracy                           0.92       600
+   macro avg       0.91      0.90      0.90       600
+weighted avg       0.92      0.92      0.91       600
+
+[[179  14   2]
+ [ 15 295   6]
+ [  6   8  75]]
+
+feature: epocx_band_ratio_hjorth_entropy_features   12 * 16 = 192
+              precision    recall  f1-score   support
+
+           0       0.48      0.57      0.53       195
+           1       0.65      0.72      0.68       316
+           2       0.73      0.18      0.29        89
+
+    accuracy                           0.59       600
+   macro avg       0.62      0.49      0.50       600
+weighted avg       0.61      0.59      0.57       600
+
+[[112  82   1]
+ [ 85 226   5]
+ [ 34  39  16]]
+
+
+## feature selection
+features shape: (3000, 192)
+number of feature names: 192
+label length: 3000
+label distribution:
+stress         1525
+mild_stress     975
+high_stress     500
+Name: count, dtype: int64
+
+Feature DataFrame shape: (3000, 193)
+   Fp1_theta  Fp1_alpha  Fp1_betaL  Fp1_betaH  Fp1_gamma  Fp1_hjorth_mobility  \
+0   6.187764   5.057859   1.557368   0.656786   0.353548          2196.711727
+1   3.204560   3.854348   2.664624   1.663716   0.329244          2415.170738
+2   9.023712  11.839038   4.012281   0.845623   0.217688          2872.517582
+3   5.383541   2.078256   2.443272   0.664039   0.336590          1701.885075
+4  18.005585   1.910397   2.010767   0.846856   0.224992          2124.827371
+
+   Fp1_hjorth_complexity  Fp1_app_entropy  Fp1_sample_entropy  \
+0          724248.772950         0.565676            0.900068
+1          941042.823215         0.675381            1.064711
+2          814266.102692         0.624495            0.935461
+3          604748.032935         0.688129            0.887303
+4          592691.480578         0.583495            0.847298
+
+   Fp1_spectral_entropy  ...  Fp2_app_entropy  Fp2_sample_entropy  \
+0              3.650413  ...         0.561776            0.823859
+1              4.037531  ...         0.671285            0.866945
+2              3.058513  ...         0.608853            0.758625
+3              3.039392  ...         0.694590            0.800886
+4              3.374976  ...         0.581754            0.666735
+
+   Fp2_spectral_entropy  Fp2_svd_entropy  Fp2_beta_alpha  \
+0              3.382854         2.832886        0.660274
+1              3.374156         2.968157        1.294287
+2              3.162708         2.812844        0.281399
+3              3.367997         2.939935        1.568639
+4              3.059853         2.747045        0.692403
+
+   Fp2_beta_alpha_theta  Fp2_theta_beta  Fp2_theta_alpha_beta  \
+0              0.210480        3.236512              1.287127
+1              0.428140        1.563060              0.881777
+2              0.173985        2.193932              0.481793
+3              0.813488        0.591780              0.361393
+4              0.069340       12.977437              5.309381
+
+   Fp2_inverse_alpha  label
+0           0.080631      1
+1           0.233673      1
+2           0.026073      1
+3           0.150871      1
+4           0.172811      1
+
+[5 rows x 193 columns]
+Data used for feature selection: (3000, 193)
+Label distribution after cleaning:
+label
+1    1525
+0     975
+2     500
+Name: count, dtype: int64
+Total features: 192
+FDR-significant features: 100
+Final selected features: 100
+
+Top 30 features:
+              feature         F            p     eta2            q  significant_fdr
+ F7_hjorth_complexity 30.583120 7.106266e-14 0.020001 1.364403e-11             True
+   F7_hjorth_mobility 26.797162 2.917253e-12 0.017568 2.800563e-10             True
+ T7_hjorth_complexity 25.103566 1.541605e-11 0.016476 9.866273e-10             True
+             T7_gamma 24.287695 3.439985e-11 0.015949 1.651193e-09             True
+             F7_gamma 23.928237 4.899994e-11 0.015717 1.881598e-09             True
+   T7_hjorth_mobility 20.546593 1.371987e-09 0.013526 4.390360e-08             True
+   FC6_sample_entropy 20.007628 2.335041e-09 0.013176 6.404685e-08             True
+    T7_sample_entropy 19.631426 3.384887e-09 0.012931 8.123728e-08             True
+      FC6_svd_entropy 18.886935 7.059430e-09 0.012447 1.437856e-07             True
+      Fp2_svd_entropy 18.827143 7.488833e-09 0.012408 1.437856e-07             True
+    F4_sample_entropy 18.176862 1.423584e-08 0.011985 2.484802e-07             True
+            FC6_betaH 18.056565 1.603259e-08 0.011906 2.565215e-07             True
+ O2_hjorth_complexity 16.562516 7.021849e-08 0.010932 1.037073e-06             True
+             F4_betaH 16.424128 8.051899e-08 0.010842 1.053984e-06             True
+FC6_hjorth_complexity 16.401488 8.234250e-08 0.010827 1.053984e-06             True
+    F8_sample_entropy 15.955353 1.280291e-07 0.010535 1.536349e-06             True
+  FC6_hjorth_mobility 15.735817 1.590941e-07 0.010392 1.796828e-06             True
+       F4_svd_entropy 15.618634 1.786566e-07 0.010315 1.848104e-06             True
+    F3_sample_entropy 15.594997 1.828853e-07 0.010300 1.848104e-06             True
+Fp2_hjorth_complexity 14.832844 3.889118e-07 0.009801 3.733553e-06             True
+   O2_hjorth_mobility 14.328172 6.410845e-07 0.009471 5.861344e-06             True
+       F8_app_entropy 13.652193 1.252489e-06 0.009028 1.093081e-05             True
+             T7_theta 13.562249 1.369255e-06 0.008969 1.143030e-05             True
+ O1_hjorth_complexity 13.500150 1.456170e-06 0.008929 1.164936e-05             True
+     O2_inverse_alpha 13.317558 1.745049e-06 0.008809 1.334895e-05             True
+   FC5_sample_entropy 13.281989 1.807670e-06 0.008786 1.334895e-05             True
+ F4_hjorth_complexity 13.195873 1.968753e-06 0.008729 1.400002e-05             True
+             O2_betaH 13.025620 2.330719e-06 0.008618 1.502110e-05             True
+   Fp2_sample_entropy 13.012343 2.361600e-06 0.008609 1.502110e-05             True
+             F8_betaH 13.004094 2.380993e-06 0.008603 1.502110e-05             True
+
+Selected features:
+['F7_hjorth_complexity', 'F7_hjorth_mobility', 'T7_hjorth_complexity', 'T7_hjorth_mobility', 'FC6_sample_entropy', 'T7_gamma', 'FC6_gamma', 'T7_sample_entropy', 'FC6_svd_entropy', 'Fp2_svd_entropy', 'F4_sample_entropy', 'O2_hjorth_complexity', 'FC6_hjorth_complexity', 'F8_sample_entropy', 'FC6_hjorth_mobility', 'F4_svd_entropy', 'F3_sample_entropy', 'F3_gamma', 'F8_gamma']
+Selected feature matrix shape: (3000, 19)
+
+              precision    recall  f1-score   support
+
+           0       0.56      0.59      0.58       195
+           1       0.66      0.76      0.71       316
+           2       0.68      0.21      0.32        89
+
+    accuracy                           0.63       600
+   macro avg       0.63      0.52      0.54       600
+weighted avg       0.63      0.63      0.61       600
+
+[[116  75   4]
+ [ 70 241   5]
+ [ 22  48  19]]
+
+
+Selected features:
+['F7_hjorth_complexity', 'F7_hjorth_mobility', 'T7_hjorth_complexity', 'T7_gamma', 'F7_gamma', 'T7_hjorth_mobility', 'FC6_sample_entropy', 'T7_sample_entropy', 'FC6_svd_entropy', 'Fp2_svd_entropy', 'F4_sample_entropy', 'FC6_betaH', 'O2_hjorth_complexity', 'F4_betaH', 'FC6_hjorth_complexity', 'F8_sample_entropy', 'FC6_hjorth_mobility', 'F4_svd_entropy', 'F3_sample_entropy', 'Fp2_hjorth_complexity', 'O2_hjorth_mobility', 'F8_app_entropy', 'T7_theta', 'O1_hjorth_complexity', 'O2_inverse_alpha', 'FC5_sample_entropy', 'F4_hjorth_complexity', 'O2_betaH', 'Fp2_sample_entropy', 'F8_betaH', 'F8_svd_entropy', 'T7_betaH', 'F4_gamma', 'T7_betaL', 'FC6_app_entropy', 'Fp2_app_entropy', 'FC6_gamma', 'T7_svd_entropy', 'O1_gamma', 'T8_hjorth_mobility', 'Fp2_hjorth_mobility', 'O2_gamma', 'F4_hjorth_mobility', 'F7_betaH', 'F4_app_entropy', 'F7_theta', 'F7_alpha', 'Fp2_gamma', 'T8_sample_entropy', 'Fp1_hjorth_complexity', 'F3_svd_entropy', 'F7_svd_entropy', 'FC6_spectral_entropy', 'Fp1_gamma', 'F3_app_entropy', 'T8_app_entropy', 'O2_svd_entropy', 'FC6_theta', 'FC5_svd_entropy', 'T8_betaL', 'F7_betaL', 'Fp2_spectral_entropy', 'T7_spectral_entropy', 'F8_hjorth_complexity', 'Fp2_betaH', 'Fp2_inverse_alpha', 'O1_betaH', 'F7_sample_entropy', 'F8_gamma', 'T8_hjorth_complexity', 'FC5_theta', 'T8_betaH', 'O1_sample_entropy', 'Fp1_spectral_entropy', 'Fp1_svd_entropy', 'O1_svd_entropy', 'F3_inverse_alpha', 'F4_spectral_entropy', 'F4_theta', 'O2_alpha', 'Fp1_hjorth_mobility', 'T8_inverse_alpha', 'Fp2_betaL', 'F8_spectral_entropy', 'FC6_betaL', 'O2_spectral_entropy', 'FC5_spectral_entropy', 'T7_app_entropy', 'T8_svd_entropy', 'F7_spectral_entropy', 'FC6_beta_alpha', 'O2_theta', 'O1_hjorth_mobility', 'O1_beta_alpha_theta', 'FC6_alpha', 'F7_app_entropy', 'Fp1_sample_entropy', 'O2_betaL', 'F7_beta_alpha', 'F8_hjorth_mobility']
+Selected feature matrix shape: (3000, 100)
+
+Subject IDs shape: (3000,)
+Number of subjects: 40
+Train subjects: [ 0  1  4  6  7  8  9 10 11 12 13 14 15 16 17 18 23 24 30 32 33 36 37 38]
+Valid subjects: [ 5 19 20 25 26 28 34 35]
+Test subjects: [ 2  3 21 22 27 29 31 39]
+Train/valid overlap: []
+Train/test overlap: []
+Valid/test overlap: []
+x_train: (1800, 100)
+x_val: (600, 100)
+x_test: (600, 100)
+y_train distribution:
+0    625
+1    900
+2    275
+Name: count, dtype: int64
+y_val distribution:
+0    150
+1    300
+2    150
+Name: count, dtype: int64
+y_test distribution:
+0    200
+1    325
+2     75
+Name: count, dtype: int64
+Best validation accuracy: 0.45666666666666667
+Best parameters: {'scaler': 'minmax', 'n_neighbors': 20, 'p': 2, 'weights': 'uniform'}
+Test accuracy: 0.47333333333333333
+Classification report:
+              precision    recall  f1-score   support
+
+ mild_stress       0.30      0.29      0.30       200
+      stress       0.56      0.70      0.62       325
+ high_stress       0.00      0.00      0.00        75
+
+    accuracy                           0.47       600
+   macro avg       0.29      0.33      0.31       600
+weighted avg       0.40      0.47      0.43       600
+
+Confusion matrix:
+[[ 58 141   1]
+ [ 97 226   2]
+ [ 36  39   0]]
+
+
+Subject IDs shape: (3000,)
+Number of subjects: 40
+Train subjects: [ 0  1  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 22 23 24 25 26
+ 27 28 29 30 32 33 35 36 37 39]
+Valid subjects: [34 38]
+Test subjects: [ 2  3 21 31]
+Train/valid overlap: []
+Train/test overlap: []
+Valid/test overlap: []
+x_train: (2550, 192)
+x_val: (150, 192)
+x_test: (300, 192)
+y_train distribution:
+0     825
+1    1300
+2     425
+Name: count, dtype: int64
+y_val distribution:
+0    25
+1    75
+2    50
+Name: count, dtype: int64
+y_test distribution:
+0    125
+1    150
+2     25
+Name: count, dtype: int64
+Best validation accuracy: 0.4533333333333333
+Best parameters: {'scaler': 'minmax', 'n_neighbors': 14, 'p': 1, 'weights': 'distance'}
+Test accuracy: 0.4533333333333333
+Classification report:
+              precision    recall  f1-score   support
+
+ mild_stress       0.36      0.20      0.26       125
+      stress       0.50      0.73      0.60       150
+ high_stress       0.08      0.04      0.05        25
+
+    accuracy                           0.45       300
+   macro avg       0.32      0.32      0.30       300
+weighted avg       0.41      0.45      0.41       300
+
+Confusion matrix:
+[[ 25  93   7]
+ [ 36 110   4]
+ [  8  16   1]]
+
+
+Binary
+Subject IDs shape: (3000,)
+Number of subjects: 40
+Train subjects: [ 0  1  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 22 23 24 25 26
+ 27 28 29 30 32 33 35 36 37 39]
+Valid subjects: [34 38]
+Test subjects: [ 2  3 21 31]
+Train/valid overlap: []
+Train/test overlap: []
+Valid/test overlap: []
+x_train: (2550, 192)
+x_val: (150, 192)
+x_test: (300, 192)
+y_train distribution:
+0     825
+1    1725
+Name: count, dtype: int64
+y_val distribution:
+0     25
+1    125
+Name: count, dtype: int64
+y_test distribution:
+0    125
+1    175
+Name: count, dtype: int64
+Best validation accuracy: 0.8066666666666666
+Best parameters: {'scaler': 'standard', 'n_neighbors': 29, 'p': 1, 'weights': 'uniform'}
+Test accuracy: 0.5666666666666667
+Classification report:
+              precision    recall  f1-score   support
+
+ mild_stress       0.35      0.05      0.08       125
+      stress       0.58      0.94      0.72       175
+
+    accuracy                           0.57       300
+   macro avg       0.47      0.49      0.40       300
+weighted avg       0.49      0.57      0.45       300
+
+Confusion matrix:
+[[  6 119]
+ [ 11 164]]

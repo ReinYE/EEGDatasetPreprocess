@@ -1,0 +1,12 @@
+3       Fp1     AF3
+4       F7      F7
+5       F3      F3
+8       FC5     FC5
+10	    T7      T7
+16	    O1      O1
+19	    O2      O2
+25	    T8      T8
+27      FC6     FC6
+30      F4      F4
+31	    F8      F8
+32	    Fp2     AF4
