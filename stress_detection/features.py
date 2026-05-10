@@ -133,47 +133,29 @@ def entropy_features(data):
     return features
 
 
-def bandpass_filter_segment(segment, sfreq, fmin, fmax):
+import numpy as np
+from scipy.signal import welch
+
+
+def compute_band_power_welch(segment, sfreq):
     '''
-    Bandpass filters one EEG segment.
+    Computes EPOC X aligned band power from one EEG epoch.
 
     Args:
         segment: EEG segment with shape (n_channels, n_samples).
         sfreq: Sampling frequency.
-        fmin: Lower frequency.
-        fmax: Upper frequency.
 
     Returns:
-        ndarray: Band-filtered EEG segment with shape (n_channels, n_samples).
+        ndarray: Band power matrix with shape (n_channels, 5).
     '''
-    sos = butter(
-        N=4,
-        Wn=[fmin, fmax],
-        btype="bandpass",
-        fs=sfreq,
-        output="sos"
-    )
+    bands = [
+        (4, 8),     # theta
+        (8, 12),    # alpha
+        (12, 16),   # betaL
+        (16, 25),   # betaH
+        (25, 45)    # gamma
+    ]
 
-    filtered = sosfiltfilt(
-        sos,
-        segment,
-        axis=1
-    )
-
-    return filtered
-
-
-def compute_band_power_from_signal(segment, sfreq):
-    '''
-    Computes power for one already band-filtered EEG signal.
-
-    Args:
-        segment: Band-filtered EEG segment with shape (n_channels, n_samples).
-        sfreq: Sampling frequency.
-
-    Returns:
-        ndarray: Power value for each channel.
-    '''
     freqs, psd = welch(
         segment,
         fs=sfreq,
@@ -181,158 +163,173 @@ def compute_band_power_from_signal(segment, sfreq):
         axis=1
     )
 
-    power = np.trapezoid(
-        psd,
-        freqs,
-        axis=1
-    )
+    band_power = np.zeros((segment.shape[0], len(bands)))
 
-    return power
+    for band_i, (fmin, fmax) in enumerate(bands):
+        idx = (freqs >= fmin) & (freqs < fmax)
+
+        if np.sum(idx) == 0:
+            band_power[:, band_i] = 0
+        else:
+            band_power[:, band_i] = np.trapezoid(
+                psd[:, idx],
+                freqs[idx],
+                axis=1
+            )
+
+    return band_power
 
 
-def epocx_bandwise_hjorth_entropy_features(data, eps=1e-8):
+def hjorth_from_power_sequence(x, eps=1e-8):
     '''
-    Computes EPOC X aligned band-wise features.
-
-    For each channel and each frequency band, this function computes:
-        band_power
-        hjorth_activity
-        hjorth_mobility
-        hjorth_complexity
-        app_entropy
-        sample_entropy
-        spectral_entropy
-        svd_entropy
-
-    It also computes ratio features per channel:
-        beta / alpha
-        beta / (alpha + theta)
-        theta / beta
-        theta / (alpha + beta)
-        1 / alpha
+    Computes Hjorth mobility and complexity from a band power sequence.
 
     Args:
-        data: EEG data with shape (n_trials, n_secs, n_channels, sfreq).
+        x: One-dimensional band power sequence.
         eps: Small value to avoid division by zero.
 
     Returns:
-        ndarray: Feature matrix with shape
-            (n_trials * n_secs, n_channels * 45).
+        tuple: mobility, complexity.
+    '''
+    x = np.asarray(x, dtype=float)
+
+    if len(x) < 3:
+        return np.nan, np.nan
+
+    dx = np.diff(x)
+    ddx = np.diff(dx)
+
+    var_x = np.var(x)
+    var_dx = np.var(dx)
+    var_ddx = np.var(ddx)
+
+    mobility = np.sqrt(var_dx / (var_x + eps))
+
+    mobility_dx = np.sqrt(var_ddx / (var_dx + eps))
+
+    complexity = mobility_dx / (mobility + eps)
+
+    return mobility, complexity
+
+
+def epocx_bandpower_hjorth_features(data, power_window=None, step=1, eps=1e-8):
+    '''
+    Computes Hjorth mobility and complexity on band power sequences.
+
+    This function first computes EPOC X aligned band power from raw EEG,
+    then computes Hjorth mobility and complexity from the band power sequence.
+
+    Args:
+        data: EEG data with shape (n_trials, n_secs, n_channels, sfreq).
+        power_window: Number of band power samples used to compute Hjorth.
+            If None, use the whole trial.
+            If an integer, use rolling windows.
+        step: Step size for rolling windows.
+        eps: Small value to avoid division by zero.
+
+    Returns:
+        ndarray: Feature matrix.
+            If power_window is None:
+                shape = (n_trials, n_channels * 15)
+            If power_window is int:
+                shape = (n_trials * n_windows, n_channels * 15)
     '''
     n_trials, n_secs, n_channels, sfreq = data.shape
 
-    bands = {
-        "theta": (4, 8),
-        "alpha": (8, 12),
-        "betaL": (12, 16),
-        "betaH": (16, 25),
-        "gamma": (25, 45)
-    }
+    band_names = ["theta", "alpha", "betaL", "betaH", "gamma"]
+    n_bands = len(band_names)
 
-    band_feature_count = 8
-    ratio_feature_count = 5
-    features_per_channel = len(bands) * band_feature_count + ratio_feature_count
+    features_per_channel = n_bands * 2 + 5
 
-    features = np.empty(
-        (n_trials, n_secs, n_channels * features_per_channel)
-    )
+    # ========= 1. Compute band power sequence =========
+    band_power_seq = np.empty((n_trials, n_secs, n_channels, n_bands))
 
     for i, trial in enumerate(data):
         for j, second in enumerate(trial):
-            band_features_by_name = {}
-            band_powers_by_name = {}
+            band_power_seq[i, j] = compute_band_power_welch(second, sfreq)
 
-            for band_name, (fmin, fmax) in bands.items():
-                band_signal = bandpass_filter_segment(
-                    second,
-                    sfreq,
-                    fmin,
-                    fmax
-                )
+    print("Band power sequence shape:", band_power_seq.shape)
+    print("Meaning: n_trials, n_secs, n_channels, n_bands")
 
-                band_power = compute_band_power_from_signal(
-                    band_signal,
-                    sfreq
-                )
+    # ========= 2. Decide Hjorth window =========
+    if power_window is None:
+        power_window = n_secs
+        use_full_trial = True
+    else:
+        use_full_trial = False
 
-                hjorth_activity = mne_f.compute_variance(band_signal)
+    if power_window < 3:
+        raise ValueError("power_window must be at least 3 to compute Hjorth complexity.")
 
-                hjorth_mobility = mne_f.compute_hjorth_mobility_spect(
-                    sfreq,
-                    band_signal
-                )
+    if power_window > n_secs:
+        raise ValueError(
+            f"power_window={power_window} is larger than n_secs={n_secs}."
+        )
 
-                hjorth_complexity = mne_f.compute_hjorth_complexity_spect(
-                    sfreq,
-                    band_signal
-                )
+    n_windows = (n_secs - power_window) // step + 1
 
-                app_entropy = mne_f.compute_app_entropy(band_signal)
-                sample_entropy = mne_f.compute_samp_entropy(band_signal)
+    all_features = []
 
-                spectral_entropy = mne_f.compute_spect_entropy(
-                    sfreq,
-                    band_signal
-                )
+    # ========= 3. Compute Hjorth on band power sequence =========
+    for trial_i in range(n_trials):
+        for start in range(0, n_secs - power_window + 1, step):
+            end = start + power_window
 
-                svd_entropy = mne_f.compute_svd_entropy(band_signal)
+            window_power = band_power_seq[trial_i, start:end]
 
-                band_features = np.column_stack([
-                    band_power,
-                    hjorth_activity,
-                    hjorth_mobility,
-                    hjorth_complexity,
-                    app_entropy,
-                    sample_entropy,
-                    spectral_entropy,
-                    svd_entropy
-                ])
-
-                band_features_by_name[band_name] = band_features
-                band_powers_by_name[band_name] = band_power
-
-            theta = band_powers_by_name["theta"]
-            alpha = band_powers_by_name["alpha"]
-            beta_l = band_powers_by_name["betaL"]
-            beta_h = band_powers_by_name["betaH"]
-            beta = beta_l + beta_h
-
-            beta_alpha = beta / (alpha + eps)
-            beta_alpha_theta = beta / (alpha + theta + eps)
-            theta_beta = theta / (beta + eps)
-            theta_alpha_beta = theta / (alpha + beta + eps)
-            inverse_alpha = 1 / (alpha + eps)
-
-            ratio_features = np.column_stack([
-                beta_alpha,
-                beta_alpha_theta,
-                theta_beta,
-                theta_alpha_beta,
-                inverse_alpha
-            ])
+            # shape: (power_window, n_channels, 5)
 
             channel_features = []
 
             for ch in range(n_channels):
                 one_channel_features = []
 
-                for band_name in bands.keys():
-                    one_channel_features.extend(
-                        band_features_by_name[band_name][ch]
+                for band_i in range(n_bands):
+                    power_series = window_power[:, ch, band_i]
+
+                    mobility, complexity = hjorth_from_power_sequence(
+                        power_series,
+                        eps=eps
                     )
 
-                one_channel_features.extend(ratio_features[ch])
+                    one_channel_features.extend([
+                        mobility,
+                        complexity
+                    ])
+
+                # ========= 4. Ratio features from average band power in this window =========
+                mean_power = np.mean(window_power[:, ch, :], axis=0)
+
+                theta = mean_power[0]
+                alpha = mean_power[1]
+                beta_l = mean_power[2]
+                beta_h = mean_power[3]
+                beta = beta_l + beta_h
+
+                beta_alpha = beta / (alpha + eps)
+                beta_alpha_theta = beta / (alpha + theta + eps)
+                theta_beta = theta / (beta + eps)
+                theta_alpha_beta = theta / (alpha + beta + eps)
+                inverse_alpha = 1 / (alpha + eps)
+
+                one_channel_features.extend([
+                    beta_alpha,
+                    beta_alpha_theta,
+                    theta_beta,
+                    theta_alpha_beta,
+                    inverse_alpha
+                ])
 
                 channel_features.extend(one_channel_features)
 
-            features[i, j] = np.array(channel_features)
+            all_features.append(channel_features)
 
-    features = features.reshape(
-        n_trials * n_secs,
-        n_channels * features_per_channel
-    )
+            if use_full_trial:
+                break
 
-    print("Input data shape:", data.shape)
+    features = np.asarray(all_features)
+
+    print("Input EEG data shape:", data.shape)
     print("Output features shape:", features.shape)
     print("Features per channel:", features_per_channel)
     print("NaN count:", np.isnan(features).sum())
