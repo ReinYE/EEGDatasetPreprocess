@@ -1,2 +1,2 @@
-datasets on google drive:
-https://drive.google.com/drive/folders/1XpnxE0kZdUeYB2DbSV_2-oD8fgoCdPY-?usp=drive_link
+datasets can be downloaded from github repository:
+https://github.com/wavesresearch/eeg_stress_detection
